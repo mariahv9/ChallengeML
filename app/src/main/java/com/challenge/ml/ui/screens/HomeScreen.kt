@@ -35,6 +35,15 @@ fun HomeScreen(
         }
 
         when (uiState) {
+            is Resource.Initial -> {
+                Text(
+                    text = "¡Bienvenido! ¿Qué producto buscas hoy?",
+                    color = Color.Black,
+                    modifier = Modifier
+                        .padding(16.dp)
+                )
+            }
+
             is Resource.Loading -> {
                 CircularProgressIndicator(
                     modifier = Modifier
@@ -53,7 +62,7 @@ fun HomeScreen(
 
             is Resource.Failure -> {
                 Text(
-                    text = "Fallo al cargar los productos: ${(uiState as Resource.Failure).exception.message}",
+                    text = "Falló al cargar los productos",
                     color = Color.Red,
                     modifier = Modifier
                         .align(Alignment.CenterHorizontally)

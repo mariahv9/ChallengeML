@@ -41,6 +41,8 @@ fun ProductDetailScreen(
         TopNavigationBar(navController = navController, back = true) {}
 
         when (productDetailState) {
+            is Resource.Initial -> {}
+
             is Resource.Loading -> {
                 CircularProgressIndicator(
                     modifier = Modifier
@@ -57,7 +59,7 @@ fun ProductDetailScreen(
 
             is Resource.Failure -> {
                 Text(
-                    text = "Fallo al cargar detalles: ${(productDetailState as Resource.Failure).exception.message}",
+                    text = "Falló al cargar detalles",
                     color = Color.Red,
                     modifier = Modifier
                         .padding(16.dp)

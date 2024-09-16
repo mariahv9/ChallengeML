@@ -16,17 +16,28 @@ import kotlinx.coroutines.launch
 class SearchProductViewModel @Inject constructor(
     private val searchUseCase: SearchUseCase
 ) : ViewModel() {
-    private val _product = MutableStateFlow<Resource<Products>>(Resource.Loading())
+    private val _product = MutableStateFlow<Resource<Products>>(Resource.Initial())
     val product: StateFlow<Resource<Products>> get() = _product
 
     fun fetchSearchProduct(query: String) {
+        _product.value = Resource.Loading()
         viewModelScope.launch {
-            _product.value = Resource.Loading()
             try {
-                val result = searchUseCase(query)
-                _product.value = result
+                when (val result = searchUseCase(query)) {
+                    is Resource.Success -> {
+                        if (result.data.products.isEmpty()) _product.value =
+                            Resource.Failure(Exception("No se encontraron productos"))
+                        else _product.value = Resource.Success(result.data)
+                    }
+
+                    is Resource.Failure -> _product.value = Resource.Failure(result.exception)
+
+                    is Resource.Initial -> _product.value = Resource.Initial()
+
+                    else -> {}
+                }
             } catch (e: Exception) {
-                Log.e("SearchProductViewModel", "Error fetching products", e)
+                Log.e("SearchProductViewModel", "Error al obtener productos", e)
                 _product.value = Resource.Failure(e)
             }
         }

@@ -31,6 +31,7 @@ class ProductDataRepository @Inject constructor(
 
             is Resource.Failure -> resource
             is Resource.Loading -> TODO()
+            is Resource.Initial -> TODO()
         }
     }
 
@@ -50,6 +51,7 @@ class ProductDataRepository @Inject constructor(
 
             is Resource.Failure -> resource
             is Resource.Loading -> TODO()
+            is Resource.Initial -> TODO()
         }
     }
 }
