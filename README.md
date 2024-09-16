@@ -13,6 +13,10 @@ This application allows users to search for products and view detailed informati
 
 2. **View Product Details**: Click on any product from the search results to view its detailed information.
 
+
+https://github.com/user-attachments/assets/f9959093-e880-4e22-87a7-c324b7acecbd
+
+
 ## Technologies Used
 
 - Kotlin
