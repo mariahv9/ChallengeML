@@ -22,8 +22,19 @@ class DetailProductViewModel @Inject constructor(
         viewModelScope.launch {
             _productDetail.value = Resource.Loading()
             try {
-                val result = detailUseCase(productId)
-                _productDetail.value = result
+                when (val result = detailUseCase(productId)) {
+                    is Resource.Success -> {
+                        if (result.data.title.isEmpty()) _productDetail.value =
+                            Resource.Failure(Exception("No se encontro detalle del producto"))
+                        else _productDetail.value = Resource.Success(result.data)
+                    }
+
+                    is Resource.Failure -> _productDetail.value = Resource.Failure(result.exception)
+
+                    is Resource.Initial -> _productDetail.value = Resource.Initial()
+
+                    else -> {}
+                }
             } catch (e: Exception) {
                 _productDetail.value = Resource.Failure(e)
             }
