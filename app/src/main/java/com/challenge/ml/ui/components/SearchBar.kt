@@ -25,10 +25,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.challenge.ml.R
 import com.challenge.ml.viewmodel.SearchProductViewModel
 
 @Composable
@@ -70,7 +72,7 @@ fun SearchBar(
             ) {
                 Icon(
                     imageVector = Icons.Default.Search,
-                    contentDescription = "Search",
+                    contentDescription = stringResource(R.string.searchbar),
                     tint = Color.Gray
                 )
                 Spacer(modifier = Modifier.width(8.dp))
@@ -79,7 +81,7 @@ fun SearchBar(
                         .weight(1f)
                 ) {
                     if (query.isEmpty()) {
-                        Text("Escribe", color = Color.Gray)
+                        Text(stringResource(R.string.type_search), color = Color.Gray)
                     }
                     innerTextField()
                 }

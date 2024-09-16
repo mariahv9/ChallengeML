@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">ML</string>
+    <string name="welcome_home_screen">¡Bienvenido! ¿Qué producto buscas hoy?</string>
+    <string name="loading">Cargando...</string>
+    <string name="failure_products">Falló al cargar los productos</string>
+    <string name="searchbar">Search</string>
+    <string name="type_search">Escribe</string>
+    <string name="loading_details">Cargando detalles...</string>
+    <string name="failure_details">Falló al cargar detalles</string>
+    <string name="available">Disponible, envío gratis</string>
+    <string name="not_available">No disponible</string>
+    <string name="description_image">Imagen del producto</string>
 </resources>

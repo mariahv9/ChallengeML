@@ -12,11 +12,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.challenge.common.Resource
 import com.challenge.domain.model.Products
+import com.challenge.ml.R
 import com.challenge.ml.ui.components.ProductList
 import com.challenge.ml.ui.components.SearchBar
 import com.challenge.ml.ui.components.TopNavigationBar
@@ -37,7 +39,7 @@ fun HomeScreen(
         when (uiState) {
             is Resource.Initial -> {
                 Text(
-                    text = "¡Bienvenido! ¿Qué producto buscas hoy?",
+                    text = stringResource(R.string.welcome_home_screen),
                     color = Color.Black,
                     modifier = Modifier
                         .padding(16.dp)
@@ -52,7 +54,7 @@ fun HomeScreen(
                     color = Color.Black
                 )
                 Text(
-                    text = "Cargando...",
+                    text = stringResource(R.string.loading),
                     color = Color.Black,
                     modifier = Modifier
                         .align(Alignment.CenterHorizontally)
@@ -62,7 +64,7 @@ fun HomeScreen(
 
             is Resource.Failure -> {
                 Text(
-                    text = "Falló al cargar los productos",
+                    text = stringResource(R.string.failure_products),
                     color = Color.Red,
                     modifier = Modifier
                         .align(Alignment.CenterHorizontally)

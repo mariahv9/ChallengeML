@@ -13,12 +13,14 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.challenge.common.Resource
 import com.challenge.domain.model.ProductDetail
+import com.challenge.ml.R
 import com.challenge.ml.ui.components.ProductImages
 import com.challenge.ml.ui.components.TopNavigationBar
 import com.challenge.ml.viewmodel.DetailProductViewModel
@@ -50,7 +52,7 @@ fun ProductDetailScreen(
                     color = Color.Black
                 )
                 Text(
-                    text = "Cargando detalles...",
+                    text = stringResource(R.string.loading_details),
                     color = Color.Black,
                     modifier = Modifier
                         .padding(16.dp)
@@ -59,7 +61,7 @@ fun ProductDetailScreen(
 
             is Resource.Failure -> {
                 Text(
-                    text = "Falló al cargar detalles",
+                    text = stringResource(R.string.failure_details),
                     color = Color.Red,
                     modifier = Modifier
                         .padding(16.dp)
@@ -88,9 +90,9 @@ fun ProductDetailScreen(
                     )
                     Text(
                         text = if (freeShipping) {
-                            "Disponible, envío gratis"
+                            stringResource(R.string.available)
                         } else {
-                            "No disponible"
+                            stringResource(R.string.not_available)
                         },
                         style = MaterialTheme.typography.bodyMedium
                     )

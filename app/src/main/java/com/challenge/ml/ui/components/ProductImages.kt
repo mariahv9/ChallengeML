@@ -18,8 +18,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.compose.SubcomposeAsyncImage
+import com.challenge.ml.R
 
 @Composable
 fun ProductImages(pictures: List<String>) {
@@ -30,7 +32,7 @@ fun ProductImages(pictures: List<String>) {
         HorizontalPager(state = pageState) { position ->
             SubcomposeAsyncImage(
                 model = pictures[position],
-                contentDescription = "Images",
+                contentDescription = stringResource(id = R.string.description_image),
                 modifier = Modifier.height(500.dp),
                 loading = {
                     CircularProgressIndicator()
