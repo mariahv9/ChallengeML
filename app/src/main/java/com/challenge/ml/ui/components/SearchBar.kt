@@ -24,6 +24,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -35,6 +36,7 @@ fun SearchBar(
     viewModel: SearchProductViewModel = hiltViewModel()
 ) {
     var query by remember { mutableStateOf("") }
+    val keyboardController = LocalSoftwareKeyboardController.current
 
     Box(
         modifier = Modifier
@@ -53,6 +55,7 @@ fun SearchBar(
                 onSearch = {
                     if (query.isNotEmpty()) {
                         viewModel.fetchSearchProduct(query)
+                        keyboardController?.hide()
                     }
                 }
             ),
